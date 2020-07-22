@@ -9,7 +9,7 @@ import os
 DOC = '''
 ## 1. Install
 
-> **pip install webhookit**
+> **pip install webhookit3**
 
 Then get cli command `webhookit_config` and `webhookit`.
 
@@ -42,18 +42,19 @@ def find_version(*file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
-setup(name='webhookit',
+setup(name='webhookit3',
       version=find_version('webhookit/app.py'),
       description=('Bind git webhooks with actions. '
                    'Simple git webhook cli tool for automation tasks.'),
       long_description=DOC,
-      author='hustcc',
-      author_email='i@hust.cc',
-      url='https://github.com/hustcc',
+      author='lihd',
+      author_email='',
+      url='https://github.com/18438655078/webhookit3',
       license='MIT',
       install_requires=[
         'click',
         'tornado',
+        'paramiko',
       ],
       classifiers=[
         'Intended Audience :: Developers',
