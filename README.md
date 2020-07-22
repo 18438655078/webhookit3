@@ -1,15 +1,14 @@
-# webhookit
+# webhookit3
 
 > A simple cli tool to create http server for git webhook, **GitHub**, **GitLab**, **GitOsc**, **Gogs**, **Coding** are all supported.
 
-[LIVE DEMO](http://webhookit.hust.cc) | [中文说明文档](README_ZH.md)
+[LIVE DEMO](http://webhookit.hust.cc)
 
-[![Latest Stable Version](https://img.shields.io/pypi/v/webhookit.svg)](https://pypi.python.org/pypi/webhookit) [![Build Status](https://travis-ci.org/hustcc/webhookit.svg?branch=master)](https://travis-ci.org/hustcc/webhookit) ![GitHub](http://shields.hust.cc/Supported-GitHub-brightgreen.svg) ![GitLab](http://shields.hust.cc/Supported-GitLab-green.svg) ![GitOsc](http://shields.hust.cc/Supported-GitOsc-blue.svg) ![Gogs](http://shields.hust.cc/Supported-Gogs-yellowgreen.svg) ![Coding](http://shields.hust.cc/Supported-Coding-yellow.svg)
 
 
 # 1. Install
 
-> **pip install webhookit**
+> **pip install webhookit3**
 
 Python 2 / 3 are all supported. After install, you can get two commands named `webhookit` and `webhookit_config` in your system.
 
@@ -20,8 +19,8 @@ Run `webhookit --help` to get help content of the command. Help content below:
 
 
 ```sh
-# webhookit --help
-Usage: webhookit [OPTIONS]
+# webhookit3 --help
+Usage: webhookit3 [OPTIONS]
 
 Options:
   -c, --config PATH      The web hook configure file path.
@@ -39,8 +38,8 @@ Run **`webhookit -c config.py -p 18340`**  to start the http server for git webh
 Here is an simple example to run the `webhookit` http server.
 
 ```sh
-# 1. install webhookit
-pip install webhookit
+# 1. install webhookit3
+pip install webhookit3
 
 # 2. initial a webhookit config file
 webhookit_config > /home/hustcc/webhook-configs/config4hustcc.py
@@ -97,7 +96,6 @@ Server can be remote and local, if local, keep `HOST`, `PORT`, `USER`, `PWD` be 
 
 # 5. License
 
-MIT@[hustcc](https://github.com/hustcc).
 
 
 

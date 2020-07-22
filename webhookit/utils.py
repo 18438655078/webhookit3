@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 '''
-Created on Mar 3, 2017
+Created on july 22, 2020
 
-@author: hustcc
+@author: li
 '''
 from functools import wraps
 from threading import Thread
@@ -13,26 +13,17 @@ import copy
 from webhookit import app
 
 
-try:
-    unicode  # noqa
-except NameError:
-    # py3
-    the_unicode = str  # noqa
-else:  # noqa
-    # py2
-    the_unicode = unicode  # noqa
-
-
 def standard_response(success, data):
-    '''standard response
-    '''
+    """
+    standard response
+    """
     rst = {}
     rst['success'] = success
     rst['data'] = data
     return json.dumps(rst)
 
 
-def async(f):
+def decorator(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
         thr = Thread(target=f, args=args, kwargs=kwargs)
@@ -84,7 +75,7 @@ def is_remote_server(s):
 # ssh to exec cmd
 def do_ssh_cmd(ip, port, account, pkey, shell, push_data='', timeout=300):
     import paramiko
-    import StringIO
+    from io import StringIO
 
     def is_msg_success(msg):
         for x in ['fatal', 'fail', 'error']:
@@ -136,7 +127,7 @@ def do_ssh_cmd(ip, port, account, pkey, shell, push_data='', timeout=300):
 
 
 # 使用线程来异步执行
-@async
+@decorator
 def do_webhook_shell(server, data):
     log('Start to process server: %s' % json.dumps(filter_server(server)))
     script = server.get('SCRIPT', '')
@@ -152,15 +143,14 @@ def do_webhook_shell(server, data):
                                         data)
         else:
             log('Start to execute local command. %s' % script)
-            import commands
+            import subprocess
             # local
-            (success, msg) = commands.getstatusoutput(server.get('SCRIPT', ''))
+            (success, msg) = subprocess.getstatusoutput(server.get('SCRIPT', ''))
             success = success > 0 and False or True
     else:
         success = False
         msg = 'There is no SCRIPT configured.'
     # end exec, log data
-    msg = the_unicode(msg, errors='ignore') or ''
     msg = msg.strip()
     msg = msg.replace('\n', ' ')
     log('Completed execute: (%s, %s)' % (success, msg))
